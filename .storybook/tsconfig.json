@@ -1,0 +1,14 @@
+{
+  "extends": "../tsconfig.json",
+  "exclude": [
+    "**/*.spec.ts"
+  ],
+  "include": [
+    "../apps/**/*.ts",
+    "../libs/**/*.ts",
+    "../node_modules/@storybook/**/*.ts"
+  ],
+  "compilerOptions": {
+    "noImplicitAny": false
+  }
+}

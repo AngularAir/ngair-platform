@@ -14,6 +14,14 @@
     {
       "project": "./tsconfig.spec.json",
       "exclude": "**/node_modules/**"
+    },
+    {
+      "project": "apps/website/src/tsconfig.app.json",
+      "exclude": "**/node_modules/**"
+    },
+    {
+      "project": "apps/website/e2e/tsconfig.e2e.json",
+      "exclude": "**/node_modules/**"
     }
   ],
   "test": {
@@ -25,12 +33,61 @@
     "schematics": {
       "collection": "@nrwl/schematics",
       "postGenerate": "npm run format",
-      "newProject": ["app", "lib"]
+      "newProject": [
+        "app",
+        "lib"
+      ]
     },
     "styleExt": "css",
     "component": {}
   },
   "warnings": {
     "typescriptMismatch": false
-  }
+  },
+  "apps": [
+    {
+      "name": "website",
+      "root": "apps/website/src",
+      "outDir": "dist/apps/website",
+      "assets": [
+        "assets",
+        "favicon.ico",
+        { "glob": "ngair-logo.png", "input": "../../../libs/website/assets/src/", "output": "./images/" }
+      ],
+      "index": "index.html",
+      "main": "main.ts",
+      "polyfills": "polyfills.ts",
+      "test": "../../../test.js",
+      "tsconfig": "tsconfig.app.json",
+      "testTsconfig": "../../../tsconfig.spec.json",
+      "prefix": "app",
+      "styles": [
+        "styles.scss"
+      ],
+      "scripts": [],
+      "environmentSource": "environments/environment.ts",
+      "environments": {
+        "dev": "environments/environment.ts",
+        "prod": "environments/environment.prod.ts"
+      }
+    },
+    {
+      "name": "website/common-ui",
+      "root": "libs/website/common-ui/src",
+      "test": "../../../../test.js",
+      "appRoot": ""
+    },
+    {
+      "name": "website/page-episode",
+      "root": "libs/website/page-episode/src",
+      "test": "../../../../test.js",
+      "appRoot": ""
+    },
+    {
+      "name": "website/page-home",
+      "root": "libs/website/page-home/src",
+      "test": "../../../../test.js",
+      "appRoot": ""
+    }
+  ]
 }
